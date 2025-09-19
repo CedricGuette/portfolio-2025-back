@@ -42,8 +42,8 @@ public class SecurityConfig {
         return http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth ->
-                        auth.requestMatchers("/api/presentation", "/api/weapon", "/api/devstat", "/api/project", "/api/auth/login", "api/admin/password/initiate", "api/admin/exists/*",  "/uploads/*").permitAll()
-                                .requestMatchers("/api/contact/**", "/api/presentation/**", "/api/weapon/**", "/api/devstat/**", "/api/project/**", "api/admin/password/change").hasRole("ADMIN")
+                        auth.requestMatchers("/api/presentation", "/api/weapon", "/api/devstat", "/api/project", "/api/auth/login","/api/contact/send", "/api/admin/password/initiate", "/api/admin/exists/*",  "/uploads/*").permitAll()
+                                .requestMatchers("/api/contact/**", "/api/presentation/**", "/api/weapon/**", "/api/devstat/**", "/api/project/**", "/api/admin/password/change").hasRole("ADMIN")
                                 .anyRequest().authenticated())
                 .cors(Customizer.withDefaults())
                 .addFilterBefore(new JwtFilter(customUserDetailService, jwtUtils), UsernamePasswordAuthenticationFilter.class)
